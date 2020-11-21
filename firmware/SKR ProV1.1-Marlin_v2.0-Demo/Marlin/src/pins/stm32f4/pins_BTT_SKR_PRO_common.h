@@ -28,7 +28,7 @@
 // Use one of these or SDCard-based Emulation will be used
 #if NO_EEPROM_SELECTED
   //#define SRAM_EEPROM_EMULATION                 // Use BackSRAM-based EEPROM emulation
-  #define FLASH_EEPROM_EMULATION                  // Use Flash-based EEPROM emulation
+  //#define FLASH_EEPROM_EMULATION                  // Use Flash-based EEPROM emulation
 #endif
 
 #if ENABLED(FLASH_EEPROM_EMULATION)
@@ -42,6 +42,8 @@
 //
 #define SERVO0_PIN                          PA1
 
+//power supply-relay
+#define PS_ON_PIN                           PF5  					
 //
 // Trinamic Stallguard pins
 //
@@ -278,6 +280,12 @@
  *               ￣￣                                               ￣￣
  *               EXP2                                              EXP1
  */
+// I2C_EEPROM
+#define I2C_EEPROM
+#ifdef E2END
+   #undef E2END
+#endif
+#define E2END 0x7FFF // EEPROM end address AT24C256 (32kB)											  
 
 //
 // LCDs and Controllers
